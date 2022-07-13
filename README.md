@@ -1,6 +1,8 @@
 # EMBER3D
 *Konstantin Weissenow, Michael Heinzinger, Burkhard Rost*
 
+*Technical University of Munich*
+
 This repository contains the code for the EMBER3D structure and mutation effect prediction system. EMBER3D is currently provided as a **prototype release** for preview purposes. The system is still under active development.
 
 ## Installation
