@@ -56,7 +56,7 @@ You can predict structures for all single amino-acid variants (SAVs) for the seq
 python predict_sav.py -i <FASTA> -o <OUTPUT_DIRECTORY>
 ```
 
-In addition to PDB files and distance maps, the SAV prediction script computes the structural difference between predictions for each mutant and the wild-type measured in lDDT (1.0 = most similar, 0.0 = least similar). These structure deltas are both rendered as an image (mutation_matrix.png) as well as provided as a text file for further consumption (mutation_log.txt).
+In addition to PDB files and distance maps, the SAV prediction script computes the structural difference between predictions for each mutant and the wild-type measured in lDDT (1.0 = most similar, 0.0 = least similar). These structure deltas are both rendered as an image (mutation_matrix.png) as well as provided as a text file for downstream consumption (mutation_log.txt).
 
 ## Mutation movie rendering
 
