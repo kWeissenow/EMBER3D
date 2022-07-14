@@ -1,4 +1,6 @@
 # EMBER3D
+![EMBER](https://rostlab.org/~conpred/EMBER_sketch_small.png "EMBER")
+
 *Konstantin Weissenow, Michael Heinzinger, Burkhard Rost*
 
 *Technical University of Munich*
