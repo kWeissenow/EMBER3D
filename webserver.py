@@ -72,7 +72,7 @@ class StructHandler(BaseHTTPRequestHandler):
             self.wfile.write(bytes(landing_page, "utf8"))
             return
 
-        if len(seq) == 0 or len(seq) > 2000:
+        if len(seq) == 0:
             self.send_response(400)
             self.send_header('Content-type','text/plain')
             self.end_headers()
