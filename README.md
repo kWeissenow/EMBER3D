@@ -46,7 +46,7 @@ You can compute structure predictions based on FASTA sequences using
 python predict.py -i <FASTA> -o <OUTPUT_DIRECTORY>
 ```
 
-The ProtT5 language model will be downloaded on first use and stored by default in the directory 'ProtT5-XL-U50'. You can change this directory with the `--t5_model` parameter.
+The ProtT5 protein language model used to generate sequence embeddings will be downloaded on first use (~7 GB) and stored by default in the directory 'ProtT5-XL-U50'. You can change this directory with the `--t5_model` parameter.
 By default, the script will produce PDB files and distance maps. You can disable outputs using the parameters `--no-pdb` and `--no-distance-maps` respectively.
 
 ## Mutation effect prediction
@@ -82,6 +82,16 @@ and directing your browser at `http://localhost:24398/` or using the address of 
 
 We reused several modules of the [RoseTTAFold](https://github.com/RosettaCommons/RoseTTAFold) architecture. We use the SE(3)-Transformer implementation from [NVIDIA](https://github.com/NVIDIA/DeepLearningExamples/tree/master/DGLPyTorch/DrugDiscovery/SE3Transformer).
 
-## References
+## Citing
 
-BioRxiv paper coming soon!
+For now, please cite this work as follows:
+```
+@software{Weissenow_EMBER3D_2022,
+  author = {Weissenow, Konstantin and Heinzinger, Michael and Rost, Burkhard},
+  doi = {10.5281/zenodo.6837687},
+  month = {7},
+  title = {{EMBER3D}},
+  url = {https://github.com/kWeissenow/EMBER3D},
+  year = {2022}
+}
+```
