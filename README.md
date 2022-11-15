@@ -7,6 +7,8 @@
 
 This repository contains the code for the EMBER3D protein structure and mutation effect prediction system. EMBER3D is currently provided as a **prototype release** for preview purposes. The system is still under active development.
 
+A Google Colab notebook for structure prediction and the rendering of protein mutation movies (PMM) can be found [here](https://colab.research.google.com/drive/16qMVCRKPSLPI08vLxVZnBEB70qYKLqTV).
+
 ## Installation
 
 Create a new virtual environment, e.g. using conda:
