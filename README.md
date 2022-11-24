@@ -7,6 +7,8 @@
 
 This repository contains the code for the EMBER3D protein structure and mutation effect prediction system. EMBER3D is currently provided as a **prototype release** for preview purposes. The system is still under active development.
 
+A Google Colab notebook for structure prediction and the rendering of protein mutation movies (PMM) can be found [here](https://colab.research.google.com/drive/16qMVCRKPSLPI08vLxVZnBEB70qYKLqTV).
+
 ## Installation
 
 Create a new virtual environment, e.g. using conda:
@@ -86,12 +88,15 @@ We reused several modules of the [RoseTTAFold](https://github.com/RosettaCommons
 
 For now, please cite this work as follows:
 ```
-@software{Weissenow_EMBER3D_2022,
-  author = {Weissenow, Konstantin and Heinzinger, Michael and Rost, Burkhard},
-  doi = {10.5281/zenodo.6837687},
-  month = {7},
-  title = {{EMBER3D}},
-  url = {https://github.com/kWeissenow/EMBER3D},
-  year = {2022}
+@article {Weissenow2022.11.14.516473,
+	author = {Weissenow, Konstantin and Heinzinger, Michael and Steinegger, Martin and Rost, Burkhard},
+	title = {Ultra-fast protein structure prediction to capture effects of sequence variation in mutation movies},
+	elocation-id = {2022.11.14.516473},
+	year = {2022},
+	doi = {10.1101/2022.11.14.516473},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2022/11/16/2022.11.14.516473},
+	eprint = {https://www.biorxiv.org/content/early/2022/11/16/2022.11.14.516473.full.pdf},
+	journal = {bioRxiv}
 }
 ```
