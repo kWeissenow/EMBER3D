@@ -14,6 +14,7 @@ parser.add_argument('-o', '--output_dir', dest='output_dir', type=str, required=
 parser.add_argument('-d', '--device', default='cuda:0', dest="device", type=str)
 parser.add_argument('--no-pdb', dest="no_pdb", action="store_true")
 parser.add_argument('--no-distance-map', dest="no_distance_map", action="store_true")
+parser.add_argument('--save-distance-array', dest="save_distance_array", action="store_true")
 parser.add_argument('-m', '--model', default="model/EMBER3D.model", dest='model_checkpoint', type=str)
 parser.add_argument('--t5-dir', dest='t5_dir', default="./ProtT5-XL-U50/", type=str)
 args = parser.parse_args()
@@ -38,11 +39,14 @@ for i,record in enumerate(SeqIO.parse(args.input, "fasta")):
     if not os.path.isdir(sample_dir):
         os.makedirs(sample_dir)
     pdb_dir = os.path.join(sample_dir, "pdb")
-    image_dir = os.path.join(sample_dir, "distance_maps")
+    image_dir = os.path.join(sample_dir, "images")
+    dist_dir = os.path.join(sample_dir, "distance_arrays")
     if not args.no_pdb and not os.path.isdir(pdb_dir):
         os.makedirs(pdb_dir)
     if not args.no_distance_map and not os.path.isdir(image_dir):
         os.makedirs(image_dir)
+    if args.save_distance_array and not os.path.isdir(dist_dir):
+        os.makedirs(dist_dir)
 
     # Wild-type prediction
 
@@ -57,6 +61,10 @@ for i,record in enumerate(SeqIO.parse(args.input, "fasta")):
             result.save_distance_map("{}/{}.png".format(image_dir, id))
 
         wild_type_distance_map = result.get_distance_map()
+
+        if args.save_distance_array:
+            np.save("{}/{}_distances.npy".format(dist_dir, id), wild_type_distance_map)
+
 
     # Mutation predictions
 
@@ -86,6 +94,10 @@ for i,record in enumerate(SeqIO.parse(args.input, "fasta")):
                         result.save_distance_map("{}/{}.png".format(image_dir, mut_id))
 
                     mutant_distance_map = result.get_distance_map()
+
+                    if args.save_distance_array:
+                        np.save("{}/{}_distances.npy".format(dist_dir, mut_id), mutant_distance_map)
+
                     struct_diff = lddt(torch.from_numpy(mutant_distance_map), torch.from_numpy(wild_type_distance_map))
                     struct_diff = torch.mean(struct_diff).item()
                     mutation_matrix[aa_list.index(aa), seq_idx] = struct_diff
