@@ -2,7 +2,6 @@ import torch
 import numpy as np
 import os
 import datetime
-from Bio import SeqIO
 from argparse import ArgumentParser
 import matplotlib.pyplot as plt
 from T5Embedder import T5Embedder
