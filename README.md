@@ -72,6 +72,12 @@ Alternatively, you can do both steps (prediction + movie rendering) at once usin
 ./create_SAV_movie.sh <FASTA> <OUTPUT_DIRECTORY>
 ```
 
+
+
+https://user-images.githubusercontent.com/60698240/204603148-fd331dd5-1e6a-4bbb-b8eb-de09c4303494.mp4
+
+
+
 ## Webserver mode
 
 You can run a simple webserver for the visualization of predictions by starting
