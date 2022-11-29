@@ -10,6 +10,7 @@ from progressBar import *
 
 if "pymol" not in  "\t".join(sys.path):
     sys.path.append("/usr/bin/pymol")
+    sys.path.append("/usr/lib/python")
     import __main__
     __main__.pymol_argv = ['pymol','-Qqc']
     import pymol
