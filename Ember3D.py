@@ -106,13 +106,13 @@ class Ember3D_Result:
 
 
 class Ember3D:
-    def __init__(self, model_checkpoint, t5_dir, device):
+    def __init__(self, model_checkpoint, t5_dir, device, use_prostt5):
         self.model = RF_1I1F()
         self.model = self.model.to(device)
         self.model.load_state_dict(torch.load(model_checkpoint))
         self.model.eval()
 
-        self.embedder = T5Embedder(t5_dir, device)
+        self.embedder = T5Embedder(t5_dir, device, use_prostt5)
         self.device = device
 
     def sequence_to_onehot(self, seq):

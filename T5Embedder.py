@@ -5,10 +5,13 @@ import transformers
 transformers.logging.set_verbosity_error()
 
 class T5Embedder:
-    def __init__(self, t5_dir, device):
+    def __init__(self, t5_dir, device, use_prostt5):
         self.device = device
 
         transformer_link = "Rostlab/prot_t5_xl_half_uniref50-enc"
+        if use_prostt5:
+            transformer_link = 'Rostlab/ProstT5'
+        print("Loading " + transformer_link)
         self.model = T5EncoderModel.from_pretrained(transformer_link, cache_dir=t5_dir, output_attentions=True, torch_dtype=torch.float16)
         self.model = self.model.to(device)
         self.model.eval()

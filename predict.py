@@ -14,7 +14,15 @@ parser.add_argument('--no-distance-map', dest="no_distance_map", action="store_t
 parser.add_argument('--save-distance-array', dest="save_distance_array", action="store_true")
 parser.add_argument('-m', '--model', default="model/EMBER3D.model", dest='model_checkpoint', type=str)
 parser.add_argument('--t5-dir', dest='t5_dir', default="./ProtT5-XL-U50/", type=str)
+parser.add_argument('--prostt5', dest="prostt5", action="store_true")
 args = parser.parse_args()
+
+use_prostt5 = False
+if args.prostt5:
+    use_prostt5 = True
+    # Switch to Ankh model checkpoint if default argument was used
+    if args.model_checkpoint == "model/EMBER3D.model":
+        args.model_checkpoint = "model/EMBER3D_ProstT5.model"
 
 # Output directories
 pdb_dir = os.path.join(args.output_dir, "pdb")
@@ -30,18 +38,26 @@ if (args.output_2d or args.save_distance_array) and not os.path.isdir(dist_orien
     os.makedirs(dist_orient_dir)
 
 # Prediction
-Ember3D = Ember3D(args.model_checkpoint, args.t5_dir, args.device)
+Ember3D = Ember3D(args.model_checkpoint, args.t5_dir, args.device, use_prostt5)
 
 start_time = time.time()
 for i,record in enumerate(SeqIO.parse(args.input, "fasta")):
     id = record.id
-    seq = str(record.seq)
-
-    if "X" in seq:
-        print("Skipping {} because of unknown residues".format(id))
-        continue
+    seq = str(record.seq).upper()
+    if seq.endswith('*'):
+        seq = seq[:-1]
 
     print("{}\t{}".format(i, id))
+
+    aa_list = list("ACDEFGHIKLMNPQRSTVWY")
+    skip = False
+    for c in seq:
+        if c not in aa_list:
+            skip = True
+            break
+    if skip:
+        print("Skipping {} because of unknown residues".format(id))
+        continue
 
     try:
         with torch.cuda.amp.autocast():
